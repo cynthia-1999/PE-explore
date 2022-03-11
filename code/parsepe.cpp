@@ -1,0 +1,187 @@
+#include "parsepe.h"
+bool ParsePe::initFlag = false;
+QHash<DWORD,QString> ParsePe::machineDSTable = QHash<DWORD,QString>();
+QHash<QString,DWORD> ParsePe::machineSDTable = QHash<QString,DWORD>();
+QHash<WORD, QString> ParsePe::image_characteristics_table = QHash<WORD, QString>();
+QHash<WORD,QString> ParsePe::SubSystemTable = QHash<WORD,QString>();
+QHash<WORD, QString> ParsePe::dllCharacteristics_table = QHash<WORD, QString>();
+QHash<DWORD, QString> ParsePe::sectionCharacteristics = QHash<DWORD, QString>();
+QHash<int, QString> ParsePe::resource_id_StringTable = QHash<int, QString>();
+
+ParsePe::ParsePe()
+{
+
+}
+void ParsePe::init(){
+    initFlag = true;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_UNKNOWN",IMAGE_FILE_MACHINE_UNKNOWN)      ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_UNKNOWN,"IMAGE_FILE_MACHINE_UNKNOWN")      ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_I386",IMAGE_FILE_MACHINE_I386)            ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_I386,"IMAGE_FILE_MACHINE_I386")            ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_R3000",IMAGE_FILE_MACHINE_R3000)          ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_R3000,"IMAGE_FILE_MACHINE_R3000")          ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_R4000",IMAGE_FILE_MACHINE_R4000)          ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_R4000,"IMAGE_FILE_MACHINE_R4000")          ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_R10000",IMAGE_FILE_MACHINE_R10000)        ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_R10000,"IMAGE_FILE_MACHINE_R10000")        ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_WCEMIPSV2",IMAGE_FILE_MACHINE_WCEMIPSV2)  ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_WCEMIPSV2,"IMAGE_FILE_MACHINE_WCEMIPSV2")  ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_ALPHA",IMAGE_FILE_MACHINE_ALPHA)          ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_ALPHA,"IMAGE_FILE_MACHINE_ALPHA")          ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_SH3",IMAGE_FILE_MACHINE_SH3)              ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_SH3,"IMAGE_FILE_MACHINE_SH3")              ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_SH3DSP",IMAGE_FILE_MACHINE_SH3DSP)        ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_SH3DSP,"IMAGE_FILE_MACHINE_SH3DSP")        ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_SH3E",IMAGE_FILE_MACHINE_SH3E)            ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_SH3E,"IMAGE_FILE_MACHINE_SH3E")            ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_SH4",IMAGE_FILE_MACHINE_SH4)              ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_SH4,"IMAGE_FILE_MACHINE_SH4")              ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_SH5",IMAGE_FILE_MACHINE_SH5)              ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_SH5,"IMAGE_FILE_MACHINE_SH5")              ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_ARM",IMAGE_FILE_MACHINE_ARM)              ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_ARM,"IMAGE_FILE_MACHINE_ARM")              ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_ARMV7",IMAGE_FILE_MACHINE_ARMV7)          ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_ARMV7,"IMAGE_FILE_MACHINE_ARMV7")          ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_ARMNT",IMAGE_FILE_MACHINE_ARMNT)          ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_ARMNT,"IMAGE_FILE_MACHINE_ARMNT")          ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_THUMB",IMAGE_FILE_MACHINE_THUMB)          ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_THUMB,"IMAGE_FILE_MACHINE_THUMB")          ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_AM33",IMAGE_FILE_MACHINE_AM33)            ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_AM33,"IMAGE_FILE_MACHINE_AM33")            ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_POWERPC",IMAGE_FILE_MACHINE_POWERPC)      ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_POWERPC,"IMAGE_FILE_MACHINE_POWERPC")      ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_POWERPCFP",IMAGE_FILE_MACHINE_POWERPCFP)  ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_POWERPCFP,"IMAGE_FILE_MACHINE_POWERPCFP")  ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_IA64",IMAGE_FILE_MACHINE_IA64)            ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_IA64,"IMAGE_FILE_MACHINE_IA64")            ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_MIPS16",IMAGE_FILE_MACHINE_MIPS16)        ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_MIPS16,"IMAGE_FILE_MACHINE_MIPS16")        ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_ALPHA64",IMAGE_FILE_MACHINE_ALPHA64)      ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_ALPHA64,"IMAGE_FILE_MACHINE_ALPHA64")      ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_MIPSFPU",IMAGE_FILE_MACHINE_MIPSFPU)      ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_MIPSFPU,"IMAGE_FILE_MACHINE_MIPSFPU")      ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_MIPSFPU16",IMAGE_FILE_MACHINE_MIPSFPU16)  ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_MIPSFPU16,"IMAGE_FILE_MACHINE_MIPSFPU16")  ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_AXP64",IMAGE_FILE_MACHINE_AXP64)          ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_AXP64,"IMAGE_FILE_MACHINE_AXP64")          ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_TRICORE",IMAGE_FILE_MACHINE_TRICORE)      ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_TRICORE,"IMAGE_FILE_MACHINE_TRICORE")      ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_CEF",IMAGE_FILE_MACHINE_CEF)              ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_CEF,"IMAGE_FILE_MACHINE_CEF")              ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_EBC",IMAGE_FILE_MACHINE_EBC)              ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_EBC,"IMAGE_FILE_MACHINE_EBC")              ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_AMD64",IMAGE_FILE_MACHINE_AMD64)          ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_AMD64,"IMAGE_FILE_MACHINE_AMD64")          ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_M32R",IMAGE_FILE_MACHINE_M32R)            ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_M32R,"IMAGE_FILE_MACHINE_M32R")            ;
+    machineSDTable.insert("IMAGE_FILE_MACHINE_CEE",IMAGE_FILE_MACHINE_CEE)              ;
+    machineDSTable.insert(IMAGE_FILE_MACHINE_CEE,"IMAGE_FILE_MACHINE_CEE")              ;
+
+    image_characteristics_table.insert(0x0001,"IMAGE_FILE_RELOCS_STRIPPED"          );
+    image_characteristics_table.insert(0x0002,"IMAGE_FILE_EXECUTABLE_IMAGE"         );
+    image_characteristics_table.insert(0x0004,"IMAGE_FILE_LINE_NUMS_STRIPPED"       );
+    image_characteristics_table.insert(0x0008,"IMAGE_FILE_LOCAL_SYMS_STRIPPED"      );
+    image_characteristics_table.insert(0x0010,"IMAGE_FILE_AGGRESIVE_WS_TRIM"        );
+    image_characteristics_table.insert(0x0020,"IMAGE_FILE_LARGE_ADDRESS_AWARE"      );
+    image_characteristics_table.insert(0x0080,"IMAGE_FILE_BYTES_REVERSED_LO"        );
+    image_characteristics_table.insert(0x0100,"IMAGE_FILE_32BIT_MACHINE"            );
+    image_characteristics_table.insert(0x0200,"IMAGE_FILE_DEBUG_STRIPPED"           );
+    image_characteristics_table.insert(0x0400,"IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP"  );
+    image_characteristics_table.insert(0x0800,"IMAGE_FILE_NET_RUN_FROM_SWAP"        );
+    image_characteristics_table.insert(0x1000,"IMAGE_FILE_SYSTEM"                   );
+    image_characteristics_table.insert(0x2000,"IMAGE_FILE_DLL"                      );
+    image_characteristics_table.insert(0x4000,"IMAGE_FILE_UP_SYSTEM_ONLY"           );
+    image_characteristics_table.insert(0x8000,"IMAGE_FILE_BYTES_REVERSED_HI"        );
+
+    dllCharacteristics_table.insert(0x0020,"IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA"		);
+    dllCharacteristics_table.insert(0x0040,"IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE" 			);
+    dllCharacteristics_table.insert(0x0080,"IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY" 		);
+    dllCharacteristics_table.insert(0x0100,"IMAGE_DLLCHARACTERISTICS_NX_COMPAT" 				);
+    dllCharacteristics_table.insert(0x0200,"IMAGE_DLLCHARACTERISTICS_NO_ISOLATION" 			);
+    dllCharacteristics_table.insert(0x0400,"IMAGE_DLLCHARACTERISTICS_NO_SEH"				    );
+    dllCharacteristics_table.insert(0x0800,"IMAGE_DLLCHARACTERISTICS_NO_BIND" 				);
+    dllCharacteristics_table.insert(0x1000,"IMAGE_DLLCHARACTERISTICS_APPCONTAINER" 			);
+    dllCharacteristics_table.insert(0x2000,"IMAGE_DLLCHARACTERISTICS_WDM_DRIVER"			    );
+    dllCharacteristics_table.insert(0x4000,"IMAGE_DLLCHARACTERISTICS_GUARD_CF" 				);
+    dllCharacteristics_table.insert(0x8000,"IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE" 	);
+
+    sectionCharacteristics.insert(0x00000008, "IMAGE_SCN_TYPE_NO_PAD" 			);
+    sectionCharacteristics.insert(0x00000020, "IMAGE_SCN_CNT_CODE" 				);
+    sectionCharacteristics.insert(0x00000040, "IMAGE_SCN_CNT_INITIALIZED_DATA" 	);
+    sectionCharacteristics.insert(0x00000080, "IMAGE_SCN_CNT_UNINITIALIZED_DATA" );
+    sectionCharacteristics.insert(0x00000100, "IMAGE_SCN_LNK_OTHER" 				);
+    sectionCharacteristics.insert(0x00000200, "IMAGE_SCN_LNK_INFO"				);
+    sectionCharacteristics.insert(0x00000800, "IMAGE_SCN_LNK_REMOVE" 			);
+    sectionCharacteristics.insert(0x00001000, "IMAGE_SCN_LNK_COMDAT" 			);
+    sectionCharacteristics.insert(0x00004000, "IMAGE_SCN_NO_DEFER_SPEC_EXC" 		);
+    sectionCharacteristics.insert(0x00008000, "IMAGE_SCN_GPREL" 					);
+    sectionCharacteristics.insert(0x00008000, "IMAGE_SCN_MEM_FARDATA" 			);
+    sectionCharacteristics.insert(0x00020000, "IMAGE_SCN_MEM_PURGEABLE" 		);
+    sectionCharacteristics.insert(0x00020000, "IMAGE_SCN_MEM_16BIT"			    );
+    sectionCharacteristics.insert(0x00040000, "IMAGE_SCN_MEM_LOCKED"			);
+    sectionCharacteristics.insert(0x00080000, "IMAGE_SCN_MEM_PRELOAD"			);
+    sectionCharacteristics.insert(0x00100000, "IMAGE_SCN_ALIGN_1BYTES"			);
+    sectionCharacteristics.insert(0x00200000, "IMAGE_SCN_ALIGN_2BYTES"			);
+    sectionCharacteristics.insert(0x00300000, "IMAGE_SCN_ALIGN_4BYTES"			);
+    sectionCharacteristics.insert(0x00400000, "IMAGE_SCN_ALIGN_8BYTES"			);
+    sectionCharacteristics.insert(0x00500000, "IMAGE_SCN_ALIGN_16BYTES"			);
+    sectionCharacteristics.insert(0x00600000, "IMAGE_SCN_ALIGN_32BYTES"			);
+    sectionCharacteristics.insert(0x00700000, "IMAGE_SCN_ALIGN_64BYTES"		    );
+    sectionCharacteristics.insert(0x00800000, "IMAGE_SCN_ALIGN_128BYTES"		);
+    sectionCharacteristics.insert(0x00900000, "IMAGE_SCN_ALIGN_256BYTES"		);
+    sectionCharacteristics.insert(0x00A00000, "IMAGE_SCN_ALIGN_512BYTES"		);
+    sectionCharacteristics.insert(0x00B00000, "IMAGE_SCN_ALIGN_1024BYTES"		);
+    sectionCharacteristics.insert(0x00C00000, "IMAGE_SCN_ALIGN_2048BYTES"		);
+    sectionCharacteristics.insert(0x00D00000, "IMAGE_SCN_ALIGN_4096BYTES"		);
+    sectionCharacteristics.insert(0x00E00000, "IMAGE_SCN_ALIGN_8192BYTES" 		);
+    sectionCharacteristics.insert(0x00F00000, "IMAGE_SCN_ALIGN_MASK"			);
+    sectionCharacteristics.insert(0x01000000, "IMAGE_SCN_LNK_NRELOC_OVFL"		);
+    sectionCharacteristics.insert(0x02000000, "IMAGE_SCN_MEM_DISCARDABLE" 		);
+    sectionCharacteristics.insert(0x04000000, "IMAGE_SCN_MEM_NOT_CACHED" 		);
+    sectionCharacteristics.insert(0x08000000, "IMAGE_SCN_MEM_NOT_PAGED" 		);
+    sectionCharacteristics.insert(0x10000000, "IMAGE_SCN_MEM_SHARED" 			);
+    sectionCharacteristics.insert(0x20000000, "IMAGE_SCN_MEM_EXECUTE" 			);
+    sectionCharacteristics.insert(0x40000000, "IMAGE_SCN_MEM_READ"				);
+    sectionCharacteristics.insert(0x80000000, "IMAGE_SCN_MEM_WRITE" 		    );
+    sectionCharacteristics.insert(0x00000001, "IMAGE_SCN_SCALE_INDEX" 			);
+
+    resource_id_StringTable.insert(0x1, "光标");
+    resource_id_StringTable.insert(0x2,"位图");
+    resource_id_StringTable.insert(0x3,"图标");
+    resource_id_StringTable.insert(0x4,"菜单");
+    resource_id_StringTable.insert(0x5,"对话框");
+    resource_id_StringTable.insert(0x6,"字符串");
+    resource_id_StringTable.insert(0x7, "字体目录");
+    resource_id_StringTable.insert(0x8,"字体");
+    resource_id_StringTable.insert(0x9,"加速键");
+    resource_id_StringTable.insert(0xa, "未格式化资源");
+    resource_id_StringTable.insert(0xb,"消息表");
+    resource_id_StringTable.insert(0xc,"光标组");
+    resource_id_StringTable.insert(0xe,"图标组");
+    resource_id_StringTable.insert(0x10, "版本信息");
+}
+
+QString ParsePe::parseTimeDateStampToString(DWORD time){
+    checkInit();
+    struct tm * p;
+    p = gmtime((time_t *)&time);
+    char str[100];
+    sprintf(str,"%04d-%02d-%02d %02d:%02d:%02d", p->tm_year + 1900, p->tm_mon + 1, p->tm_mday, (p->tm_hour + 8) % 24, p->tm_min, p->tm_sec);
+    return QString(str);
+}
+DWORD ParsePe::parseStringToTimeDateStamp(QString & time){
+    checkInit();
+    struct tm tmp;
+    auto data0 = time.toLatin1();
+    auto data = data0.data();
+    memset(&tmp, 0, sizeof (struct tm));
+    tmp.tm_year = (data[0] - 48) * 1000 + (data[1] - 48) * 100 + (data[2] - 48) * 10 + (data[3] - 48) - 1900;
+    tmp.tm_mon = (data[5] - 48) * 10 + (data[6] - 48) - 1;
+    tmp.tm_mday = (data[8] - 48) * 10 + (data[9] - 48);
+    tmp.tm_hour = (data[11] - 48) * 10 + (data[12] - 48);
+    tmp.tm_min = (data[14] - 48) * 10 + (data[15] - 48);
+    tmp.tm_sec = (data[17] - 48) * 10 + (data[18] - 48);
+    time_t result = 0;
+    result = mktime(&tmp);
+    return result;
+}

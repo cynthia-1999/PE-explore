@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SectionCharsDialog</class>
+ <widget class="QDialog" name="SectionCharsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>709</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>节属性及权限</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>440</y>
+     <width>641</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>661</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAsNeeded</enum>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustIgnored</enum>
+   </property>
+   <property name="widgetResizable">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>4</x>
+      <y>0</y>
+      <width>631</width>
+      <height>621</height>
+     </rect>
+    </property>
+    <widget class="QWidget" name="formLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>631</width>
+       <height>621</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <property name="rowWrapPolicy">
+       <enum>QFormLayout::DontWrapRows</enum>
+      </property>
+      <property name="horizontalSpacing">
+       <number>21</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>8</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_TYPE_DSECTLabel">
+        <property name="text">
+         <string>0x00000001 IMAGE_SCN_TYPE_DSECT</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_TYPE_DSECTCheckBox">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_TYPE_NOLOADLabel">
+        <property name="text">
+         <string>0x00000002 IMAGE_SCN_TYPE_NOLOAD</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_TYPE_NOLOADCheckBox"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_TYPE_GROUPLabel">
+        <property name="text">
+         <string>0x00000004 IMAGE_SCN_TYPE_GROUP</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_TYPE_GROUPCheckBox"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_TYPE_NO_PADLabel">
+        <property name="text">
+         <string>0x00000008 IMAGE_SCN_TYPE_NO_PAD</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_TYPE_NO_PADCheckBox"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_TYPE_COPYLabel">
+        <property name="text">
+         <string>0x00000010 IMAGE_SCN_TYPE_COPY</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_TYPE_COPYCheckBox"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_CNT_CODELabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <italic>true</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0x00000020 IMAGE_SCN_CNT_CODE                 Contains Code</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_CNT_CODECheckBox"/>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_CNT_INITIALIZED_DATALabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <italic>true</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0x00000040 IMAGE_SCN_CNT_INITIALIZED_DATA    Contains Initialized Data</string>
+        </property>
+        <property name="buddy">
+         <cstring></cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_CNT_INITIALIZED_DATACheckBox"/>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_CNT_UNINITIALIZED_DATALabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <italic>true</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0x00000080 IMAGE_SCN_CNT_UNINITIALIZED_DATA  Contains Unintialized Data </string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_CNT_UNINITIALIZED_DATACheckBox"/>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_LNK_OTHERLabel">
+        <property name="text">
+         <string>0x00000100 IMAGE_SCN_LNK_OTHER</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_LNK_OTHERCheckBox"/>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_LNK_INFOLabel">
+        <property name="text">
+         <string>0x00000200 IMAGE_SCN_LNK_INFO</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_LNK_INFOCheckBox"/>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_TYPE_OVERLabel">
+        <property name="text">
+         <string>0x00000400 IMAGE_SCN_TYPE_OVER</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_TYPE_OVERCheckBox"/>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_LNK_REMOVELabel">
+        <property name="text">
+         <string>0x00000800 IMAGE_SCN_LNK_REMOVE</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_LNK_REMOVECheckBox"/>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_LNK_COMDATLabel">
+        <property name="text">
+         <string>0x00001000 IMAGE_SCN_LNK_COMDAT</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_LNK_COMDATCheckBox"/>
+      </item>
+      <item row="13" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_NO_DEFER_SPEC_EXCLabel">
+        <property name="text">
+         <string>0x00004000 IMAGE_SCN_NO_DEFER_SPEC_EXC</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_NO_DEFER_SPEC_EXCCheckBox"/>
+      </item>
+      <item row="14" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_GPRELLabel">
+        <property name="text">
+         <string>0x00008000 IMAGE_SCN_GPREL</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_GPRELCheckBox"/>
+      </item>
+      <item row="15" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_PURGEABLELabel">
+        <property name="text">
+         <string>0x00020000 IMAGE_SCN_MEM_PURGEABLE</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_PURGEABLECheckBox"/>
+      </item>
+      <item row="16" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_LOCKEDLabel">
+        <property name="text">
+         <string>0x00040000 IMAGE_SCN_MEM_LOCKED</string>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_LOCKEDCheckBox"/>
+      </item>
+      <item row="17" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_PRELOADLabel">
+        <property name="text">
+         <string>0x00080000 IMAGE_SCN_MEM_PRELOAD</string>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_PRELOADCheckBox"/>
+      </item>
+      <item row="18" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_LNK_NRELOC_OVFLLabel">
+        <property name="text">
+         <string>0x01000000 IMAGE_SCN_LNK_NRELOC_OVFL    Section contains extended relocations</string>
+        </property>
+       </widget>
+      </item>
+      <item row="18" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_LNK_NRELOC_OVFLCheckBox"/>
+      </item>
+      <item row="19" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_DISCARDABLELabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <italic>true</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0x02000000 IMAGE_SCN_MEM_DISCARDABLE   Section can be discarded</string>
+        </property>
+       </widget>
+      </item>
+      <item row="19" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_DISCARDABLECheckBox"/>
+      </item>
+      <item row="20" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_NOT_CACHEDLabel">
+        <property name="text">
+         <string>0x04000000 IMAGE_SCN_MEM_NOT_CACHED</string>
+        </property>
+       </widget>
+      </item>
+      <item row="20" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_NOT_CACHEDCheckBox"/>
+      </item>
+      <item row="21" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_NOT_PAGEDLabel">
+        <property name="text">
+         <string>0x08000000 IMAGE_SCN_MEM_NOT_PAGED</string>
+        </property>
+       </widget>
+      </item>
+      <item row="21" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_NOT_PAGEDCheckBox"/>
+      </item>
+      <item row="22" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_SHAREDLabel">
+        <property name="text">
+         <string>0x10000000 IMAGE_SCN_MEM_SHARED</string>
+        </property>
+       </widget>
+      </item>
+      <item row="22" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_SHAREDCheckBox"/>
+      </item>
+      <item row="23" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_EXECUTELabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <italic>true</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0x20000000 IMAGE_SCN_MEM_EXECUTE       Section can executed</string>
+        </property>
+       </widget>
+      </item>
+      <item row="23" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_EXECUTECheckBox"/>
+      </item>
+      <item row="24" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_READLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <italic>true</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0x40000000 IMAGE_SCN_MEM_READ          Section can be read</string>
+        </property>
+       </widget>
+      </item>
+      <item row="24" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_READCheckBox"/>
+      </item>
+      <item row="25" column="0">
+       <widget class="QLabel" name="iMAGE_SCN_MEM_WRITELabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <italic>true</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0x80000000 IMAGE_SCN_MEM_WRITE         Section can be writen</string>
+        </property>
+       </widget>
+      </item>
+      <item row="25" column="1">
+       <widget class="QCheckBox" name="iMAGE_SCN_MEM_WRITECheckBox"/>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="tipsLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>360</y>
+     <width>661</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑 Light</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>说明：通过点击单选框来选择节的属性，大部分的比特目前都属于保留位，对于一些废弃或未规定的位,这里并未做显示，如果需要对特定位做操作而这里未列出，可以选择在二进制编辑界面进行修改，能够得到一样的结果。斜体表示的比特位为常用比特，粗体表示的比特位为原始值为1的比特。</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sectionNameLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>651</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑 Light</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>你正在修改 .text 节的属性。</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>SectionCharsDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>SectionCharsDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>hookMainWindow</class>
+ <widget class="QMainWindow" name="hookMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Adobe 黑体 Std R</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QTableView" name="tableView">
+        <property name="styleSheet">
+         <string notr="true">QTableView {
+    color: black;                                       /*表格内文字颜色*/
+    gridline-color: white;                              /*表格内框颜色*/
+    background-color: white;               /*表格内背景色*/
+    alternate-background-color: white;
+    selection-color: rgb(176, 252, 255);                             /*选中区域的文字颜色*/
+    selection-background-color: rgb(77, 77, 77);        /*选中区域的背景色*/
+    border: 1px groove gray;
+    border-radius: 0px;
+    padding: 2px 4px;
+}</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="file">
+    <property name="font">
+     <font>
+      <family>Adobe 黑体 Std R</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="createNewPorecess"/>
+    <addaction name="exit"/>
+   </widget>
+   <widget class="QMenu" name="options">
+    <property name="font">
+     <font>
+      <family>Adobe 黑体 Std R</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>选项</string>
+    </property>
+    <addaction name="setOntop"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="view">
+    <property name="font">
+     <font>
+      <family>Adobe 黑体 Std R</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>查看</string>
+    </property>
+    <addaction name="refresh"/>
+    <addaction name="Resourceutilization"/>
+   </widget>
+   <addaction name="file"/>
+   <addaction name="options"/>
+   <addaction name="view"/>
+  </widget>
+  <action name="createNewPorecess">
+   <property name="text">
+    <string>创建新进程(N)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="exit">
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </action>
+  <action name="setOntop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>置于顶层</string>
+   </property>
+  </action>
+  <action name="refresh">
+   <property name="text">
+    <string>刷新</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="Resourceutilization">
+   <property name="text">
+    <string>资源利用率</string>
+   </property>
+  </action>
+  <action name="hookOp">
+   <property name="text">
+    <string>HOOK</string>
+   </property>
+  </action>
+  <action name="SuspendPro">
+   <property name="text">
+    <string>挂起进程</string>
+   </property>
+  </action>
+  <action name="ResumePro">
+   <property name="text">
+    <string>恢复进程</string>
+   </property>
+  </action>
+  <action name="TerminatePro">
+   <property name="text">
+    <string>结束进程</string>
+   </property>
+  </action>
+  <action name="InlineHook">
+   <property name="text">
+    <string>inline hook</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
